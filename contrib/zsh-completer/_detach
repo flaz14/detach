@@ -1,0 +1,9 @@
+#compdef detach
+
+_arguments \
+	'-e[connect file to standard error of command]:errfile:_files' \
+	'-f[run in the foreground]' \
+	'-i[connect file to standard input of command]:infile:_files' \
+	'-o[connect file to standard output of command]:outfile:_files' \
+	'(-):command name: _command_names -e'  \
+	'*::arguments: _normal'

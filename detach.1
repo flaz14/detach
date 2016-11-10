@@ -1,0 +1,36 @@
+.TH detach 1 "" "" "User Commands"
+.SH NAME
+.B detach
+\- run a command after detaching from the terminal
+.SH SYNOPSIS
+\fBdetach\fR [\fIoptions\fR] [\fB--\fR] \fIcommand\fR [\fIargs\fR]
+
+Forks a new process, detaches is from the terminal, and executes
+command with the specified arguments.
+.SH OPTIONS
+\fBdetach\fR recognizes a couple of options, which are discussed below.
+The special option \fB--\fR is used to signal that the rest of the arguments
+are the \fIcommand\fR and \fIargs\fR to be passed to it.
+.TP
+\fB-e\fR \fIfile\fR
+Connect \fIfile\fR to the standard error of the command.
+.TP
+\fB-f\fR
+Run in the foreground (do not fork).
+.TP
+\fB-i\fR \fIfile\fR
+Connect \fIfile\fR to the standard input of the command.
+.TP
+\fB-o\fR \fIfile\fR
+Connect \fIfile\fR to the standard output of the command.
+.TP
+\fB-p\fR \fIfile\fR
+Write the pid of the detached process to \fIfile\fR.
+.SH EXAMPLE
+.B detach xterm
+
+Start an xterm that will not be closed when the current shell exits.
+.SH AUTHOR
+.B detach
+was written by Robbert Haarman. See \fIhttp://inglorion.net/\fR for contact
+information.
