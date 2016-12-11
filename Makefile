@@ -27,6 +27,6 @@ install-bash-completion :
 	install -m 644 detach.bash_completion.sh '${bash_completion_dir}/detach'
 	
 uninstall :
-	rm '${bash_completion_dir}/detach'
-	rm '${mandir}/man1/detach.1'
-	rm '${bindir}/detach'
+	rm -f -- '${bash_completion_dir}/detach'
+	rm -f -- '${mandir}/man1/detach.1'
+	rm -f -- '${bindir}/detach'
