@@ -15,7 +15,7 @@ BASH_COMPLETION_DIR ?= /etc/bash_completion.d
 all : $(BIN_FILE)
 
 clean :
-	-rm -f -- '${BIN_FILE}'
+	rm -f -- '${BIN_FILE}'
 
 install : install-bin install-man install-bash-completion
 
