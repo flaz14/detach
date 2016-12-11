@@ -2,7 +2,7 @@ APPNAME ?= detach
 
 PREFIX ?= /usr/local
 BIN_DIR ?= ${PREFIX}/bin
-MAN_DIR ?= ${PREFIX}/share/man
+MAN_DIR ?= ${PREFIX}/share/man/man1
 BASH_COMPLETION_DIR ?= /etc/bash_completion.d
 
 all : $(APPNAME)
@@ -17,8 +17,8 @@ install-bin : detach
 	install -s detach '${BIN_DIR}'
 
 install-man : detach.1
-	[ -d '${MAN_DIR}/man1' ] || mkdir -p '${MAN_DIR}/man1'
-	install -m 644 detach.1 '${MAN_DIR}/man1'
+	[ -d '${MAN_DIR}' ] || mkdir -p '${MAN_DIR}'
+	install -m 644 detach.1 '${MAN_DIR}'
 # TODO rename Bash autocomplete source file
 install-bash-completion : 
 	install -m 644 detach.bash_completion.sh '${BASH_COMPLETION_DIR}/detach'
