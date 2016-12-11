@@ -1,3 +1,5 @@
+SHELL = /bin/sh
+
 APPNAME ?= detach
 
 BIN_FILE ?= ${APPNAME}
