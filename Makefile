@@ -20,14 +20,14 @@ install : install-bin install-man install-bash-completion
 
 install-bin : $(BIN_FILE)
 	[ -d '$(BIN_DIR)' ] || mkdir --parents '$(BIN_DIR)'
-	install -s '$(BIN_FILE)' '$(BIN_DIR)'
+	install --strip '$(BIN_FILE)' '$(BIN_DIR)'
 
 install-man : detach.1
 	[ -d '$(MAN_DIR)' ] || mkdir --parents '$(MAN_DIR)'
-	install -m 644 '$(MAN_PAGE)' '$(MAN_DIR)'
+	install --mode=644 '$(MAN_PAGE)' '$(MAN_DIR)'
 	
 install-bash-completion : 
-	install -m 644 '$(BASH_COMPLETION_SCRIPT)' '$(BASH_COMPLETION_DIR)/$(APPNAME)'
+	install --mode=644 '$(BASH_COMPLETION_SCRIPT)' '$(BASH_COMPLETION_DIR)/$(APPNAME)'
 	
 uninstall :
 	rm --force -- '$(BASH_COMPLETION_DIR)/$(APPNAME)'
