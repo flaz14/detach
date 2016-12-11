@@ -7,6 +7,8 @@ BASH_COMPLETION_DIR ?= /etc/bash_completion.d
 TARGETS = detach
 OBJECTS = detach
 
+all : $(TARGETS)
+
 clean :
 	-rm -f -- $(OBJECTS)
 
