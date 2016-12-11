@@ -7,9 +7,9 @@ BIN_FILE ?= $(APPNAME)
 MAN_PAGE ?= $(APPNAME).1
 BASH_COMPLETION_SCRIPT ?= completion/bash/$(APPNAME).sh
 
-PREFIX ?= /usr/local
-BIN_DIR ?= $(PREFIX)/bin
-MAN_DIR ?= $(PREFIX)/share/man/man1
+ROOT ?= /usr/local
+BIN_DIR ?= $(ROOT)/bin
+MAN_DIR ?= $(ROOT)/share/man/man1
 BASH_COMPLETION_DIR ?= /etc/bash_completion.d
 
 all : $(BIN_FILE)
