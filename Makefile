@@ -1,6 +1,5 @@
 SHELL = /bin/sh
 
-# TODO rename all custom macros to lowercase
 APPNAME ?= detach
 
 BIN_FILE ?= $(APPNAME)
