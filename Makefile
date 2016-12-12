@@ -1,33 +1,35 @@
-PREFIX ?= /usr/local
-bindir ?= ${PREFIX}/bin
-mandir ?= ${PREFIX}/share/man
-bash_complete_dir ?= /etc/bash_completion.d
+SHELL = /bin/sh
 
-TARGETS = detach
-OBJECTS =
+APPNAME ?= detach
 
-all : $(TARGETS)
+BIN_FILE ?= $(APPNAME)
+MAN_PAGE ?= $(APPNAME).1
+BASH_COMPLETION_SCRIPT ?= completion/bash/$(APPNAME).sh
+
+ROOT ?= /usr/local
+BIN_DIR ?= $(ROOT)/bin
+MAN_DIR ?= $(ROOT)/share/man/man1
+BASH_COMPLETION_DIR ?= /etc/bash_completion.d
+
+all : $(BIN_FILE)
 
 clean :
-	#-rm $(OBJECTS)
+	rm --force -- '$(BIN_FILE)'
 
-distclean : clean
-	-rm $(TARGETS)
+install : install-bin install-man install-bash-completion
 
-install : install-bin install-man install-bash-complete
-
-install-bin : detach
-	[ -d '${bindir}' ] || mkdir -p '${bindir}'
-	install -s detach '${bindir}'
+install-bin : $(BIN_FILE)
+	[ -d '$(BIN_DIR)' ] || mkdir --parents '$(BIN_DIR)'
+	install --strip '$(BIN_FILE)' '$(BIN_DIR)'
 
 install-man : detach.1
-	[ -d '${mandir}/man1' ] || mkdir -p '${mandir}/man1'
-	install -m 644 detach.1 '${mandir}/man1'
+	[ -d '$(MAN_DIR)' ] || mkdir --parents '$(MAN_DIR)'
+	install --mode=644 '$(MAN_PAGE)' '$(MAN_DIR)'
 	
-install-bash-complete:
-	install -m 644 detach.bash_complete.sh '${bash_complete_dir}/detach'
-
-love :
-	#unzip; strip; touch; finger; mount; fsck; more; yes; umount; sleep
-
-.PHONY : all clean distclean install install-bin install-man love
+install-bash-completion : 
+	install --mode=644 '$(BASH_COMPLETION_SCRIPT)' '$(BASH_COMPLETION_DIR)/$(APPNAME)'
+	
+uninstall :
+	rm --force -- '$(BASH_COMPLETION_DIR)/$(APPNAME)'
+	rm --force -- '$(MAN_DIR)/man1/$(MAN_PAGE)'
+	rm --force -- '$(BIN_DIR)/$(BIN_FILE)'
